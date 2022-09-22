@@ -7,7 +7,7 @@ render() {
   return (
     <section id="intro">
       <div id="img-container">
-        <img src={extraction} alt="bg" />
+        <img className='cover-img' src={extraction} alt="bg" />
       </div>
     </section>
   );
