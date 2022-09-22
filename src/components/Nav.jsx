@@ -1,38 +1,41 @@
 import React from "react";
 import FavoriteList from "./FavoriteList";
-class  Nav  extends React.Component {
+class Nav extends React.Component {
     state = {
-        showFavoriteList: false
+        showFavoriteList: false,
+        data: []
     }
-    componentDidUpdate(prevProps, prevState){
-        if(prevState.showFavoriteList !== this.state.showFavoriteList){
-                this.setState({showFavoriteList: this.state.showFavoriteList })
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.showFavoriteList !== this.state.showFavoriteList) {
+            this.setState({ showFavoriteList: this.state.showFavoriteList })
+        }
+        if (this.props.data !== prevProps.data) {
+            this.setState({ data: this.props.data });
         }
     }
 
     handleShowList = (value) => {
-        console.log(value)
-        console.log(this.state.showFavoriteList)
-        this.setState({showFavoriteList: value })
+
+        this.setState({ showFavoriteList: value })
 
     }
 
-render() {
+    render() {
 
-    return (
-    <header>
-        <nav>
-            <h1>Movies Land</h1>
-            <ul>
-                <li>Home</li>
-                <li onClick={() => this.setState({ showFavoriteList: !this.state.showFavoriteList }) }>List anime
-                        {this.state.showFavoriteList && <FavoriteList showFavoriteList = {  this.handleShowList /*this.state.showFavoriteList */ } /> }                   
-                </li>
-            </ul>
-        </nav>
-    </header>
-    );
-};
+        return (
+            <header>
+                <nav>
+                    <h1>Movies Land</h1>
+                    <ul>
+                        <li>Home</li>
+                        <li onClick={() => this.setState({ showFavoriteList: !this.state.showFavoriteList })}>Favorite List 
+                            <FavoriteList data={this.state.data} showFavoriteList={this.state.showFavoriteList /*this.state.showFavoriteList */} />
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+        );
+    };
 
 }
 
