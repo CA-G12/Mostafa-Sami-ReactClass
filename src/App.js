@@ -10,14 +10,18 @@ class App extends React.Component{
   state = {
     movieInfo : {},
     movieSelected:null,
-    genres:'All'
-
+    genres:'All',
+    data:[]
   }
 
-  
   movieSelected = (id, name) => {
-    this.setState({ movieSelected: { id ,  name  } })
-}
+    this.setState({ movieSelected: { id, name } })
+  }
+  setData = (cb) => {
+    const newData=cb(this.state.data)
+    this.setState({data:newData})
+    
+  }
 
   genresSelected = ( genres) => {
     console.log(genres)
@@ -28,15 +32,14 @@ class App extends React.Component{
 render(){
   return (
     <>
-    <Nav />
+    <Nav data={this.state.data}/>
     <Cover />
     <SearchBar movieSelected = {this.movieSelected} />
-    <FilmInfo movie ={this.state.movieSelected}  />
+    <FilmInfo movie={this.state.movieSelected} setData={this.setData}/>
     <FilterMovies genresSelected={this.genresSelected} />
     <AllMovies genres={this.state.genres}/>
     </>
-
-    );
+   )
   }
 }
 
