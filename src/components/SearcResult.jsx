@@ -26,7 +26,13 @@ class SearchResult extends React.Component {
 
     return (
             <div className="suggestion-container">
-                {this.state.data.map((ele) => <p key={ele.show.id}>{ele.show.name}</p>)}
+                {
+                
+                this.state.data/*.filter((ele) => !ele.show.name.includes("'") && !ele.show.name.includes('"') ) */
+                .map((ele) => <p onClick={(e)=>{ 
+                    this.props.movieSelected(ele.show.id, ele.show.name)
+                }} 
+                    key={ele.show.id}>{ele.show.name}</p>)}
             </div>
         );
     }

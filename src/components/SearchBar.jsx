@@ -8,6 +8,12 @@ state = {
     handleSearch = (value) => {
         this.setState({searchQuery: value})
     }
+
+    // movieSelected = (value) => {
+    //     // this.setState({searchQuery: value})
+    // }
+
+
 render() {
     return ( 
         <section id="search">
@@ -21,7 +27,7 @@ render() {
             value={this.state.searchQuery}
             placeholder="Search anime or movie..."/>
             
-            <SearchResult searchQuery = {this.state.searchQuery} />
+            <SearchResult searchQuery = {this.state.searchQuery} movieSelected={this.props.movieSelected} />
         
         </section>
         );
